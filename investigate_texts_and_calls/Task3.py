@@ -73,7 +73,7 @@ def get_area_code_and_mobile_prefixes(records):
                     if mobile_prefixes not in code:
                         code.append(mobile_prefixes)
 
-    return code
+    return sorted(code)
 
 
 def get_percentage(records):

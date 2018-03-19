@@ -65,7 +65,7 @@ def find_telemarketers(text_records, call_records):
                 if ret not in text_to:
                     telemarketers.append(ret)
 
-    return telemarketers
+    return sorted(telemarketers)
 
 
 print("These numbers could be telemarketers: ")
