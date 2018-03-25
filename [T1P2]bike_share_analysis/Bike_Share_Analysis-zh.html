@@ -11824,7 +11824,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 导入所有必要的包和函数。</span>
@@ -11841,7 +11841,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_first_point</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
@@ -11860,7 +11860,7 @@ div#notebook {
         <span class="c1">## 待办：对 DictReader 对象使用函数     ##</span>
         <span class="c1">## 从而读取数据文件的第一条骑行记录并将其存储为一个变量     ##</span>
         <span class="c1">## 见 https://docs.python.org/3/library/csv.html#reader-objects ##           </span>
-        <span class="n">first_trip</span> <span class="o">=</span> <span class="n">trip_reader</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+        <span class="n">first_trip</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">trip_reader</span><span class="p">)</span>  <span class="c1"># replaced by next(reader)</span>
         
         <span class="c1">## 待办：用 pprint 库来输出第一条骑行记录。 ##</span>
         <span class="c1">## 见 https://docs.python.org/3/library/pprint.html     ##</span>
@@ -11968,7 +11968,7 @@ OrderedDict([(&#39;Duration (ms)&#39;, &#39;427387&#39;),
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[115]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">duration_in_mins</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
@@ -11985,9 +11985,7 @@ OrderedDict([(&#39;Duration (ms)&#39;, &#39;427387&#39;),
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># 请在此处写出代码</span>
-    <span class="k">if</span> <span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;NYC&#39;</span><span class="p">:</span>
-        <span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="s1">&#39;tripduration&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">60</span>
-    <span class="k">elif</span> <span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;Chicago&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;NYC&#39;</span> <span class="ow">or</span> <span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;Chicago&#39;</span><span class="p">:</span>
         <span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="s1">&#39;tripduration&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">60</span>
     <span class="k">elif</span> <span class="n">city</span> <span class="o">==</span> <span class="s1">&#39;Washington&#39;</span><span class="p">:</span>
         <span class="n">duration</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="s1">&#39;Duration (ms)&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">60</span>
@@ -12680,20 +12678,21 @@ The longest average riding time in NYC: customer
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>如果你按示例的用法来用 <code>.hist()</code> 和 <code>.show()</code> 函数，就可能得到一张完全在意料之外的统计图，该图左侧将有一条极长的柱形，相邻的第二条柱形则可能十分短小，而且中间和右边将空出许多空间，这个时候你可以看看 x 轴的时长值，你会发现，数据里有些高度异常的极端值，不过你不需要重新处理数据，只需为 <code>.hist()</code> 函数再加一些参数，限制绘图数据的范围即可，函数相关文件请见<a href="https://matplotlib.org/devdocs/api/_as_gen/matplotlib.pyplot.hist.html#matplotlib.pyplot.hist">[这里]</a>.</p>
 <p><strong>问题 5</strong>：用 <code>.hist()</code> 函数的参数来为所选城市的会员骑行时长绘制分布图，并单独为散客做同样的操作。限制统计图的范围，仅绘制骑行时长小于 75 分钟的数据。另外，你可以设置每条柱形之间有五分钟的间隔。在每组数据中，各分布图的峰值分别在哪？你会如何描述每个分布图的形状？</p>
-<p><strong>答案</strong>：以Washington数据为例，会员骑行时长分布图的峰值大概在3800附近，散客骑行时长分布图的峰值大概在430附近。从会员骑行时长分布图上看大部分的会员骑行时间都集中在0~20分钟之间，大约有3800人的会员骑行时间集中在7~10分钟之间。从散客骑行时长分布图上看大部分的散客骑行时间都集中在0~30分钟之间，大约有430人的散客骑行时间集中在14~17分钟之间。</p>
+<p><strong>答案</strong>：以Washington数据为例，会员骑行时长分布图的峰值大概在3800附近，散客骑行时长分布图的峰值大概在430附近。从会员骑行时长分布图上看大部分的会员骑行时间都集中在0~20分钟之间，大约有3800人的会员骑行时间集中在7~10分钟之间。从散客骑行时长分布图上看大部分的散客骑行时间都集中在0~30分钟之间，大约有430人的散客骑行时间集中在14~17分钟之间。另外从偏度上看，会员和散客的偏度分别是32.38和10.19，都是正偏。</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 使用本框及新框来回答问题 5##</span>
 
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 
@@ -12726,11 +12725,13 @@ The longest average riding time in NYC: customer
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Subscriber</span><span class="se">\&#39;</span><span class="s1">s Trip Durations&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Duration (m)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The skewness of subscriber: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">get_duration_subscriber</span><span class="p">(</span><span class="n">filename</span><span class="p">))))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">get_duration_customer</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">75</span><span class="p">),</span> <span class="n">rwidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Customer</span><span class="se">\&#39;</span><span class="s1">s Trip Durations&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Duration (m)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The skewness of customer: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">get_duration_customer</span><span class="p">(</span><span class="n">filename</span><span class="p">))))</span>
 </pre></div>
 
 </div>
@@ -12761,6 +12762,17 @@ The longest average riding time in NYC: customer
 <div class="prompt"></div>
 
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The skewness of subscriber: 32.3828776263009
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -12769,6 +12781,17 @@ The longest average riding time in NYC: customer
 >
 </div>
 
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The skewness of customer: 10.194217095340031
+</pre>
+</div>
 </div>
 
 </div>
@@ -12959,7 +12982,7 @@ The longest average riding time in NYC: customer
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="k">import</span> <span class="n">call</span>
@@ -12976,7 +12999,7 @@ The longest average riding time in NYC: customer
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[128]:</div>
+<div class="prompt output_prompt">Out[1]:</div>
 
 
 
